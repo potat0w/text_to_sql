@@ -1,0 +1,25 @@
+# Clone stays small. Data, weights, and scores are rebuilt by the steps in the README.
+
+.profile
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Spider release and the JSONL built from it
+spider_data/
+data/*
+!data/.gitkeep
+*.sqlite
+*.zip
+
+# Training artifacts and scores
+results/*
+!results/.gitkeep
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+*.gguf
+*.log

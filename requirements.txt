@@ -1,0 +1,11 @@
+torch
+transformers>=4.46
+peft>=0.13
+bitsandbytes>=0.44
+accelerate>=0.34
+pyyaml
+tqdm
+sentencepiece
+protobuf
+huggingface_hub
+hf_transfer

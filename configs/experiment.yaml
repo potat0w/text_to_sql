@@ -1,0 +1,47 @@
+# Paths are relative to the project root.
+
+seed: 42
+model_name: Qwen/Qwen2.5-Coder-7B-Instruct
+
+spider_root: spider_data/spider_data
+data_dir: data
+results_dir: results
+checkpoint_dir: checkpoints/qlora
+
+# null keeps every row that survives the SQLite filter. Set an int to cap train only.
+max_train_rows: null
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  compute_dtype: bfloat16
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+training:
+  epochs: 1
+  lr: 1.0e-4
+  batch_size: 8
+  grad_accum: 2
+  max_seq_len: 1024
+  warmup_ratio: 0.03
+  lr_scheduler: cosine
+  weight_decay: 0.0
+  logging_steps: 10
+  save_steps: 100
+  save_total_limit: 2
+
+eval:
+  batch_size: 4
+  max_new_tokens: 256
+
+modal:
+  app_name: text2sql-7b
+  volume_name: text2sql
+  environment: text2sql
+  gpu: L40S
